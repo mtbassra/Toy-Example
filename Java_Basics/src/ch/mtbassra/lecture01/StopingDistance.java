@@ -1,5 +1,7 @@
 package ch.mtbassra.lecture01;
 
+import java.util.Scanner;
+
 /**
  * 
  * @author mtbas
@@ -10,7 +12,11 @@ public class StopingDistance {
 
 	public static void main(String[] args) {
 		
-		float velocity = 33.333f; // 120 km/h
+		Scanner userInput = new Scanner(System.in);
+
+		System.out.println("Enter Velocity: ");
+		float velocity = userInput.nextFloat(); // 120 km/h
+		
 		float reactionTime = 0.3f; // in seconds
 		
 	float reactionDistance = reactionTime * velocity;
@@ -22,7 +28,7 @@ public class StopingDistance {
 	float stopingDistance = reactionDistance + breakingDistance;
 	System.out.println("Stoping Distance " + stopingDistance);
 	
-	
+	userInput.close(); // done reading information
 	}
 
 }
