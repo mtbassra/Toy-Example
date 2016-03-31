@@ -29,12 +29,12 @@ public class Splash_View extends View<Splash_Model> {
 		
 		progress = new ProgressBar();
 		HBox bottomBox = new HBox();
-		bottomBox.setId("progressBox");
+		bottomBox.setId("progressbox");
 		bottomBox.getChildren().add(progress);
 		root.setBottom(bottomBox);
 		
 		Scene scene = new Scene(root, 300, 300, Color.TRANSPARENT);
-//		scene.getStylesheets().addAll(this.getClass().getResourceAsStream("splash.css").toExternalForm());
+        scene.getStylesheets().addAll(this.getClass().getResource("splash.css").toExternalForm());
 		
 		return scene;
 	}
