@@ -1,5 +1,8 @@
 package abstractClasses;
 
-public class Model {
+public abstract class Model {
+	protected Model() {
+		//Nothing in here
+	}
 
 }
