@@ -1,9 +1,9 @@
-package commonClasses;
+package ch.be.mtbassra.commonClasses;
 
 import java.util.Locale;
 import java.util.logging.Logger;
 
-import chatModel.Start_Chatting;
+import ch.be.mtbassra.chatModel.Start_Chatting;
 
 public class ServiceLocator {
 	private static ServiceLocator serviceLocator; // Singleton

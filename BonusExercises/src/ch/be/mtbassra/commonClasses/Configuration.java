@@ -1,4 +1,4 @@
-package commonClasses;
+package ch.be.mtbassra.commonClasses;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

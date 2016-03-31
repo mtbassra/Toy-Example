@@ -1,6 +1,6 @@
-package splashScreen;
+package ch.be.mtbassra.splashScreen;
 
-import abstractClasses.View;
+import ch.be.mtbassra.abstractClasses.View;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;

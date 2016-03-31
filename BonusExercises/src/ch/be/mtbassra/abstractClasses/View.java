@@ -1,4 +1,4 @@
-package abstractClasses;
+package ch.be.mtbassra.abstractClasses;
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;

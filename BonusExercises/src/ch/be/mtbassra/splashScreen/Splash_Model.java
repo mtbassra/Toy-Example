@@ -1,14 +1,14 @@
-package splashScreen;
+package ch.be.mtbassra.splashScreen;
 
 import java.util.logging.FileHandler;
 import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import abstractClasses.Model;
-import commonClasses.Configuration;
-import commonClasses.ServiceLocator;
-import commonClasses.Translator;
+import ch.be.mtbassra.abstractClasses.Model;
+import ch.be.mtbassra.commonClasses.Configuration;
+import ch.be.mtbassra.commonClasses.ServiceLocator;
+import ch.be.mtbassra.commonClasses.Translator;
 import javafx.concurrent.Task;
 
 public class Splash_Model extends Model {

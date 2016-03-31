@@ -1,13 +1,13 @@
-package chatModel;
+package ch.be.mtbassra.chatModel;
 
-import chatView.Chat_View;
-import commonClasses.ServiceLocator;
+import ch.be.mtbassra.chatView.Chat_View;
+import ch.be.mtbassra.commonClasses.ServiceLocator;
+import ch.be.mtbassra.splashScreen.Splash_Controller;
+import ch.be.mtbassra.splashScreen.Splash_Model;
+import ch.be.mtbassra.splashScreen.Splash_View;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
-import splashScreen.Splash_Controller;
-import splashScreen.Splash_Model;
-import splashScreen.Splash_View;
 
 public class Start_Chatting extends Application {
 	private static Start_Chatting mainProgram; // singleton

@@ -1,4 +1,4 @@
-package abstractClasses;
+package ch.be.mtbassra.abstractClasses;
 
 public abstract class Model {
 	protected Model() {
