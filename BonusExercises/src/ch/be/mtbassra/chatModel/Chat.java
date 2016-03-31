@@ -9,8 +9,8 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 
-public class Start_Chatting extends Application {
-	private static Start_Chatting mainProgram; // singleton
+public class Chat extends Application {
+	private static Chat mainProgram; // singleton
 	private Splash_View splashView;
 	private Chat_View view;
 	
@@ -48,7 +48,7 @@ public class Start_Chatting extends Application {
 		
 	}
 	
-	protected static Start_Chatting getMainProgram() {
+	protected static Chat getMainProgram() {
 		return mainProgram;
 	}
 

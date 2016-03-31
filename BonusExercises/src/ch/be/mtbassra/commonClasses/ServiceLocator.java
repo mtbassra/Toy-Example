@@ -3,13 +3,13 @@ package ch.be.mtbassra.commonClasses;
 import java.util.Locale;
 import java.util.logging.Logger;
 
-import ch.be.mtbassra.chatModel.Start_Chatting;
+import ch.be.mtbassra.chatModel.Chat;
 
 public class ServiceLocator {
 	private static ServiceLocator serviceLocator; // Singleton
 
 	// Application-global constants
-	final private Class<?> APP_CLASS = Start_Chatting.class;
+	final private Class<?> APP_CLASS = Chat.class;
 	final private String APP_NAME = "Chat";
 
 	// Supported locals (for translations)

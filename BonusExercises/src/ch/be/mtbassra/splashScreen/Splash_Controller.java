@@ -1,14 +1,14 @@
 package ch.be.mtbassra.splashScreen;
 
 import ch.be.mtbassra.abstractClasses.Controller;
-import ch.be.mtbassra.chatModel.Start_Chatting;
+import ch.be.mtbassra.chatModel.Chat;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Worker;
 
 public class Splash_Controller extends Controller<Splash_Model, Splash_View> {
 	
-	public Splash_Controller(final Start_Chatting main, Splash_Model model, Splash_View view) {
+	public Splash_Controller(final Chat main, Splash_Model model, Splash_View view) {
 		super (model, view);
 		
 		//To monitor the progress property and pass it on to the progress bar
