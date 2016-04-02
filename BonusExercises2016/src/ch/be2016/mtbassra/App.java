@@ -18,8 +18,8 @@ import javafx.stage.Stage;
  * 
  * @author Brad Richards
  */
-public class JavaFX_App_Template extends Application {
-    private static JavaFX_App_Template mainProgram; // singleton
+public class App extends Application {
+    private static App mainProgram; // singleton
     private Splash_View splashView;
     private App_View view;
 
@@ -130,7 +130,7 @@ public class JavaFX_App_Template extends Application {
     }
 
     // Static getter for a reference to the main program object
-    protected static JavaFX_App_Template getMainProgram() {
+    protected static App getMainProgram() {
         return mainProgram;
     }
 }

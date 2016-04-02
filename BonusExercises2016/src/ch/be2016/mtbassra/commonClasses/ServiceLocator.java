@@ -3,7 +3,7 @@ package ch.be2016.mtbassra.commonClasses;
 import java.util.Locale;
 import java.util.logging.Logger;
 
-import ch.be2016.mtbassra.JavaFX_App_Template;
+import ch.be2016.mtbassra.App;
 
 /**
  * Copyright 2015, FHNW, Prof. Dr. Brad Richards. All rights reserved. This code
@@ -20,8 +20,8 @@ public class ServiceLocator {
     private static ServiceLocator serviceLocator; // singleton
 
     // Application-global constants
-    final private Class<?> APP_CLASS = JavaFX_App_Template.class;
-    final private String APP_NAME = "JavaFX_App_Template";
+    final private Class<?> APP_CLASS = App.class;
+    final private String APP_NAME = "App";
     
     // Supported locales (for translations)
     final private Locale[] locales = new Locale[] { new Locale("en"), new Locale("de") };

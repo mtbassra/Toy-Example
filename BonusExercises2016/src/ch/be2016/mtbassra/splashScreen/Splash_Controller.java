@@ -1,6 +1,6 @@
 package ch.be2016.mtbassra.splashScreen;
 
-import ch.be2016.mtbassra.JavaFX_App_Template;
+import ch.be2016.mtbassra.App;
 import ch.be2016.mtbassra.abstractClasses.Controller;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -15,7 +15,7 @@ import javafx.concurrent.Worker;
  */
 public class Splash_Controller extends Controller<Splash_Model, Splash_View> {
 
-    public Splash_Controller(final JavaFX_App_Template main, Splash_Model model, Splash_View view) {
+    public Splash_Controller(final App main, Splash_Model model, Splash_View view) {
         super(model, view);
         
         // We could monitor the progress property and pass it on to the progress bar
