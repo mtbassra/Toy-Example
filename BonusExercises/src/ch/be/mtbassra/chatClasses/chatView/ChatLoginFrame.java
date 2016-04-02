@@ -6,8 +6,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
-@SuppressWarnings("unused")
-public class ChatLoginFrame extends BorderPane{
+public class ChatLoginFrame extends BorderPane {
 	
 	private GridPane root;
     private Button btnJoin;
@@ -19,37 +18,33 @@ public class ChatLoginFrame extends BorderPane{
     private TextField txtServerAddress;
     private TextField txtPortAddress;
     private TextField txtUserName;
-    
-    public ChatLoginFrame() {
-    	create_GUI();
-    }
-    
-    private void create_GUI() {
-    	
-    	root = new GridPane();
-    	
+
+	protected ChatLoginFrame() {
+		super();
+		root = new GridPane();
+		
     	lblIcon = new Label();
     	lblWellcome = new Label("Wellcome To Chat");
-    	lblEnterName = new Label("Enty Name");
-    	lblServer = new Label("Server");
-    	lblPort = new Label("Port");
+    	lblEnterName = new Label("Enter Name: ");
+    	lblServer = new Label("Server: ");
+    	lblPort = new Label("Port: ");
     	txtUserName = new TextField();
     	txtServerAddress = new TextField("LocalHost");
     	txtPortAddress = new TextField("8888");
-    	btnJoin = new Button();
+    	btnJoin = new Button(" JOIN ");
 
-    	root.add(lblIcon, 0, 1);
     	root.add(lblWellcome, 0, 0);
-    	root.add(lblEnterName, 1, 0);
+    	root.add(lblEnterName, 0, 1);
     	root.add(txtUserName, 1, 1);
-    	root.add(lblServer, 2, 0);
-    	root.add(txtServerAddress, 2, 1);
+    	root.add(lblServer, 0, 2);
+    	root.add(txtServerAddress, 1, 2);
     	root.add(lblPort, 2, 2);
-    	root.add(lblPort, 2, 3);
-
+    	root.add(txtPortAddress, 3, 2);
+    	root.add(btnJoin, 3, 3);
     	
-    }
+		this.setLeft(lblIcon);
+		this.setTop(lblWellcome);
+		this.setCenter(root);
 
-
-
+	}
 }
