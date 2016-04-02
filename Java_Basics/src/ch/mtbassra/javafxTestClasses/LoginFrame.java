@@ -9,6 +9,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+/**
+ * This is a test fxtestclass
+ * @author mtbas
+ *
+ */
 public class LoginFrame extends Application {
 	public static void main(String[] args) {
 		launch(args);
