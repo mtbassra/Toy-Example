@@ -3,7 +3,7 @@ package ch.be.mtbassra.commonClasses;
 import java.util.Locale;
 import java.util.logging.Logger;
 
-import ch.be.mtbassra.chatModel.Chat;
+import ch.be.mtbassra.chatClasses.Chat;
 
 public class ServiceLocator {
 	private static ServiceLocator serviceLocator; // Singleton

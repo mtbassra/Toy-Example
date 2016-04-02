@@ -22,7 +22,9 @@ public class Configuration {
 		try {
 			defaultOptions.load(inStream);
 			logger.config("Defualt configuration file found");
+			System.out.println("ethey ni lab gei a");
 		} catch (Exception e) {
+			System.out.println("ethey ni labi");
 			logger.warning("No defualt configuration file found: " + defaultFileName);
 		} finally {
 			try {

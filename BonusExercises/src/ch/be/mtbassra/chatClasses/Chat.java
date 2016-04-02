@@ -1,6 +1,6 @@
-package ch.be.mtbassra.chatModel;
+package ch.be.mtbassra.chatClasses;
 
-import ch.be.mtbassra.chatView.Chat_View;
+import ch.be.mtbassra.chatClasses.chatView.Chat_View;
 import ch.be.mtbassra.commonClasses.ServiceLocator;
 import ch.be.mtbassra.splashScreen.Splash_Controller;
 import ch.be.mtbassra.splashScreen.Splash_Model;
