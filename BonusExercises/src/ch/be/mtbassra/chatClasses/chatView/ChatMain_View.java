@@ -63,5 +63,9 @@ public class ChatMain_View extends View<Chat_Model> {
 
 		return scene;
 	}
+	
+	public TextField getTxtLoggedAs() {
+		return txtLoggedAs;
+	}
 
 }
