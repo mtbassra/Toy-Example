@@ -12,8 +12,6 @@ import javafx.stage.Stage;
 
 public class ChatLogin_View extends View<Chat_Model> {
 
-	private String userName;
-
 	private BorderPane mainPane;
 	private GridPane root;
 	private Button btnJoin;
@@ -28,14 +26,6 @@ public class ChatLogin_View extends View<Chat_Model> {
 
 	public ChatLogin_View(Stage stage, Chat_Model model) {
 		super(stage, model);
-
-		// btnJoin.setOnAction(new EventHandler<ActionEvent>() {
-		// @Override
-		// public void handle(ActionEvent event) {
-		// System.out.println("join button kam kr rya wey");
-		// model.startMainView();
-		// }
-		// });
 	}
 
 	@Override
@@ -71,17 +61,86 @@ public class ChatLogin_View extends View<Chat_Model> {
 		return scene;
 
 	}
-	
+
+	public GridPane getRoot() {
+		return root;
+	}
+
+	public void setRoot(GridPane root) {
+		this.root = root;
+	}
+
 	public Button getBtnJoin() {
 		return btnJoin;
 	}
 
-	public void setUserName() {
-		userName = txtUserName.getText();
+	public void setBtnJoin(Button btnJoin) {
+		this.btnJoin = btnJoin;
 	}
 
-	public String getUserName() {
-		return userName;
+	public Label getLblEnterName() {
+		return lblEnterName;
 	}
+
+	public void setLblEnterName(Label lblEnterName) {
+		this.lblEnterName = lblEnterName;
+	}
+
+	public Label getLblWellcome() {
+		return lblWellcome;
+	}
+
+	public void setLblWellcome(Label lblWellcome) {
+		this.lblWellcome = lblWellcome;
+	}
+
+	public Label getLblIcon() {
+		return lblIcon;
+	}
+
+	public void setLblIcon(Label lblIcon) {
+		this.lblIcon = lblIcon;
+	}
+
+	public Label getLblServer() {
+		return lblServer;
+	}
+
+	public void setLblServer(Label lblServer) {
+		this.lblServer = lblServer;
+	}
+
+	public Label getLblPort() {
+		return lblPort;
+	}
+
+	public void setLblPort(Label lblPort) {
+		this.lblPort = lblPort;
+	}
+
+	public TextField getTxtServerAddress() {
+		return txtServerAddress;
+	}
+
+	public void setTxtServerAddress(TextField txtServerAddress) {
+		this.txtServerAddress = txtServerAddress;
+	}
+
+	public TextField getTxtPortAddress() {
+		return txtPortAddress;
+	}
+
+	public void setTxtPortAddress(TextField txtPortAddress) {
+		this.txtPortAddress = txtPortAddress;
+	}
+
+	public TextField getTxtUserName() {
+		return txtUserName;
+	}
+
+	public void setTxtUserName(TextField txtUserName) {
+		this.txtUserName = txtUserName;
+	}
+	
 
 }

@@ -58,14 +58,98 @@ public class ChatMain_View extends View<Chat_Model> {
 		root.add(txtCurrentOnline, 4, 2);
 
 		mainPane.setCenter(root);
-		
-		Scene scene = new Scene(mainPane);	
+
+		Scene scene = new Scene(mainPane);
 
 		return scene;
 	}
-	
+
+	public BorderPane getMainPane() {
+		return mainPane;
+	}
+
+	public void setMainPane(BorderPane mainPane) {
+		this.mainPane = mainPane;
+	}
+
+	public Label getLblLoggedAs() {
+		return lblLoggedAs;
+	}
+
+	public void setLblLoggedAs(Label lblLoggedAs) {
+		this.lblLoggedAs = lblLoggedAs;
+	}
+
 	public TextField getTxtLoggedAs() {
 		return txtLoggedAs;
+	}
+
+	public void setTxtLoggedAs(TextField txtLoggedAs) {
+		this.txtLoggedAs = txtLoggedAs;
+	}
+
+	public Button getBtnDisconnect() {
+		return btnDisconnect;
+	}
+
+	public void setBtnDisconnect(Button btnDisconnect) {
+		this.btnDisconnect = btnDisconnect;
+	}
+
+	public Label getLblConversation() {
+		return lblConversation;
+	}
+
+	public void setLblConversation(Label lblConversation) {
+		this.lblConversation = lblConversation;
+	}
+
+	public TextField getTxtConversation() {
+		return txtConversation;
+	}
+
+	public void setTxtConversation(TextField txtConversation) {
+		this.txtConversation = txtConversation;
+	}
+
+	public Label getLblMessage() {
+		return lblMessage;
+	}
+
+	public void setLblMessage(Label lblMessage) {
+		this.lblMessage = lblMessage;
+	}
+
+	public TextField getTxtMessage() {
+		return txtMessage;
+	}
+
+	public void setTxtMessage(TextField txtMessage) {
+		this.txtMessage = txtMessage;
+	}
+
+	public Button getBtnSend() {
+		return btnSend;
+	}
+
+	public void setBtnSend(Button btnSend) {
+		this.btnSend = btnSend;
+	}
+
+	public Label getLblCurrentOnline() {
+		return lblCurrentOnline;
+	}
+
+	public void setLblCurrentOnline(Label lblCurrentOnline) {
+		this.lblCurrentOnline = lblCurrentOnline;
+	}
+
+	public TextField getTxtCurrentOnline() {
+		return txtCurrentOnline;
+	}
+
+	public void setTxtCurrentOnline(TextField txtCurrentOnline) {
+		this.txtCurrentOnline = txtCurrentOnline;
 	}
 
 }
