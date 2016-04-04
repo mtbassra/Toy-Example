@@ -4,6 +4,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public abstract class View<M> {
+	
 	protected Stage stage;
 	protected Scene scene;
 	protected M model;
