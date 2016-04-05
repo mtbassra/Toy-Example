@@ -1,22 +1,31 @@
 package ch.be.mtbassra.chatClasses.chatView;
 
+import java.util.Locale;
 import ch.be.mtbassra.abstractClasses.View;
 import ch.be.mtbassra.chatClasses.chatModel.Chat_Model;
+import ch.be.mtbassra.commonClasses.ServiceLocator;
+import ch.be.mtbassra.commonClasses.Translator;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class ChatLogin_View extends View<Chat_Model> {
+	
+	private Menu menuFile;
+	private Menu menuFileLanguage;
+	private Menu menuHelp;
 
 	private BorderPane mainPane;
 	private GridPane root;
-	private Button btnJoin;
+	private Button btnConnect;
 	private Label lblEnterName;
-	private Label lblWellcome;
 	private Label lblIcon;
 	private Label lblServer;
 	private Label lblPort;
@@ -26,41 +35,80 @@ public class ChatLogin_View extends View<Chat_Model> {
 
 	public ChatLogin_View(Stage stage, Chat_Model model) {
 		super(stage, model);
+		stage.setTitle("CHAT WITH ALL");
+		
+		ServiceLocator.getServiceLocator().getLogger().info("Chat Login View initialized");
 	}
 
 	@Override
 	protected Scene create_GUI() {
-
+		
+		ServiceLocator sl = ServiceLocator.getServiceLocator();
+		Translator tl = sl.getTranslator();
+		
+		MenuBar menuBar = new MenuBar();
+		menuFile = new Menu(tl.getString("program.menu.file"));
+		menuFileLanguage = new Menu(tl.getString("program.menu.file.language"));
+		menuFile.getItems().add(menuFileLanguage);
+		
+		for (Locale locale : sl.getLocales()) {
+			MenuItem language = new MenuItem(locale.getLanguage());
+			menuFileLanguage.getItems().add(language);
+			language.setOnAction( event -> {
+				sl.setTranslator(new Translator(locale.getLanguage()));
+				updateLoginTexts();
+			});
+		}
+		menuHelp = new Menu(tl.getString("program.menu.help"));
+		
+		menuBar.getMenus().addAll(menuFile, menuHelp);
+		
 		root = new GridPane();
 		mainPane = new BorderPane();
 
 		lblIcon = new Label();
-		lblWellcome = new Label("Wellcome To Chat");
-		lblEnterName = new Label("Enter Name: ");
-		lblServer = new Label("Server: ");
-		lblPort = new Label("Port: ");
+		lblEnterName = new Label(tl.getString("enter.name"));
+		
+		lblServer = new Label(tl.getString("server"));
+		lblPort = new Label(tl.getString("port"));
 		txtUserName = new TextField();
 		txtServerAddress = new TextField("LocalHost");
 		txtPortAddress = new TextField("8888");
-		btnJoin = new Button(" JOIN ");
+		btnConnect = new Button(tl.getString("connect"));
 
-		root.add(lblWellcome, 0, 0);
 		root.add(lblEnterName, 0, 1);
 		root.add(txtUserName, 1, 1);
 		root.add(lblServer, 0, 2);
 		root.add(txtServerAddress, 1, 2);
 		root.add(lblPort, 2, 2);
 		root.add(txtPortAddress, 3, 2);
-		root.add(btnJoin, 3, 3);
+		root.add(btnConnect, 3, 3);
 
+		mainPane.setTop(menuBar);
 		mainPane.setLeft(lblIcon);
-		mainPane.setTop(lblWellcome);
 		mainPane.setCenter(root);
 
 		Scene scene = new Scene(mainPane);
 		return scene;
 
 	}
+	
+	public void updateLoginTexts() {
+		Translator tl = ServiceLocator.getServiceLocator().getTranslator();
+		//the menu entries
+		menuFile.setText(tl.getString("program.menu.file"));
+		menuFileLanguage.setText(tl.getString("program.menu.file.language"));
+		menuHelp.setText(tl.getString("program.menu.help"));
+		
+		//Labels
+		lblEnterName.setText(tl.getString("enter.name"));
+		lblServer.setText(tl.getString("server"));
+		lblPort.setText(tl.getString("port"));
+		
+		//Control
+		btnConnect.setText(tl.getString("connect"));
+	}
+	
 
 	public GridPane getRoot() {
 		return root;
@@ -71,11 +119,11 @@ public class ChatLogin_View extends View<Chat_Model> {
 	}
 
 	public Button getBtnJoin() {
-		return btnJoin;
+		return btnConnect;
 	}
 
 	public void setBtnJoin(Button btnJoin) {
-		this.btnJoin = btnJoin;
+		this.btnConnect = btnJoin;
 	}
 
 	public Label getLblEnterName() {
@@ -86,13 +134,6 @@ public class ChatLogin_View extends View<Chat_Model> {
 		this.lblEnterName = lblEnterName;
 	}
 
-	public Label getLblWellcome() {
-		return lblWellcome;
-	}
-
-	public void setLblWellcome(Label lblWellcome) {
-		this.lblWellcome = lblWellcome;
-	}
 
 	public Label getLblIcon() {
 		return lblIcon;
