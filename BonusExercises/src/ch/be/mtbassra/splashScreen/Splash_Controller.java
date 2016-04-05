@@ -1,7 +1,7 @@
 package ch.be.mtbassra.splashScreen;
 
+import ch.be.mtbassra.Chat;
 import ch.be.mtbassra.abstractClasses.Controller;
-import ch.be.mtbassra.chatClasses.Chat;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Worker;

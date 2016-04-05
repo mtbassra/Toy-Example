@@ -1,10 +1,6 @@
 package ch.be.mtbassra.chatClasses.chatModel;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import ch.be.mtbassra.abstractClasses.Model;
-import ch.be.mtbassra.chatClasses.Chat;
 import ch.be.mtbassra.chatClasses.chatView.ChatLogin_View;
 import ch.be.mtbassra.chatClasses.chatView.ChatMain_View;
 import ch.be.mtbassra.commonClasses.ServiceLocator;
@@ -14,9 +10,9 @@ public class Chat_Model extends Model {
 	ServiceLocator serviceLocator;
 	ChatLogin_View loginView;
 	ChatMain_View mainView;
-	private List<ChatMain_View> mainViews;
 	
 	public Chat_Model() {
+		
 		serviceLocator = ServiceLocator.getServiceLocator();
 		serviceLocator.getLogger().info("Chat Model Initialized");
 	}
@@ -28,8 +24,9 @@ public class Chat_Model extends Model {
 		
 		mainView = new ChatMain_View(stage, model);
 		mainView.start();
-
 		
+		serviceLocator.getLogger().info("Chat is started");
+				
 	}
 	
 }

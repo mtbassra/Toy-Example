@@ -1,8 +1,9 @@
-package ch.be.mtbassra.chatClasses;
+package ch.be.mtbassra;
 
 import ch.be.mtbassra.chatClasses.chatController.ChatLogin_Controller;
 import ch.be.mtbassra.chatClasses.chatModel.Chat_Model;
 import ch.be.mtbassra.chatClasses.chatView.ChatLogin_View;
+import ch.be.mtbassra.chatClasses.chatView.ChatMain_View;
 import ch.be.mtbassra.commonClasses.ServiceLocator;
 import ch.be.mtbassra.splashScreen.Splash_Controller;
 import ch.be.mtbassra.splashScreen.Splash_Model;
@@ -14,10 +15,8 @@ import javafx.stage.Stage;
 public class Chat extends Application {
 	private static Chat mainProgram; // singleton
 	private Splash_View splashView;
-	
 	private ChatLogin_View loginView;
-
-	
+	private ChatMain_View mainView;
 	private ServiceLocator serviceLocator; //resources, after initialization
 	
 	public static void main(String[] args) {
@@ -42,6 +41,9 @@ public class Chat extends Application {
 		new Splash_Controller(this, splashModel, splashView);
 		splashView.start();
 		
+		//Resources are now initialized
+		serviceLocator = ServiceLocator.getServiceLocator();
+		
 		//Display the splash screen and begin the initialization
 		splashModel.initialize();
 		
@@ -59,6 +61,19 @@ public class Chat extends Application {
 		splashView = null;
 		loginView.start();
 		
+	}
+	
+	@Override	
+	public void stop(){
+		serviceLocator.getConfiguration().save();
+		
+		if (loginView != null && mainView  != null)  {
+			//Make the view invisible
+			loginView.stop();
+			mainView.stop();
+		}
+		
+		serviceLocator.getLogger().info("Application is Terminated");
 	}
 	
 	protected static Chat getMainProgram() {
