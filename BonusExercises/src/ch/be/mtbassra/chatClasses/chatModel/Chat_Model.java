@@ -28,5 +28,6 @@ public class Chat_Model extends Model {
 		serviceLocator.getLogger().info("Chat is started");
 				
 	}
-	
+
+
 }

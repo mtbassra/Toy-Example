@@ -22,6 +22,8 @@ public class ChatMain_Controller extends Controller<Chat_Model, ChatMain_View> {
 		serviceLocator = ServiceLocator.getServiceLocator();
 		serviceLocator.getLogger().info("Chat Main Controller Initialized");
 	}
+	
+	
 
 
 
