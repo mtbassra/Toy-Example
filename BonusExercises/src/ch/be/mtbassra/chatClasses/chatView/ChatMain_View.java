@@ -1,16 +1,27 @@
 package ch.be.mtbassra.chatClasses.chatView;
 
+import java.util.Locale;
+
 import ch.be.mtbassra.abstractClasses.View;
 import ch.be.mtbassra.chatClasses.chatModel.Chat_Model;
+import ch.be.mtbassra.commonClasses.ServiceLocator;
+import ch.be.mtbassra.commonClasses.Translator;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class ChatMain_View extends View<Chat_Model> {
+	
+	private Menu menuFile;
+	private Menu menuFileLanguage;
+	private Menu menuHelp;
 
 	private BorderPane mainPane;
 	private GridPane root;
@@ -22,7 +33,7 @@ public class ChatMain_View extends View<Chat_Model> {
 	private Label lblMessage;
 	private TextField txtMessage;
 	private Button btnSend;
-	private Label lblCurrentOnline;
+	private Label lblCurrentlyOnline;
 	private TextField txtCurrentOnline;
 
 	public ChatMain_View(Stage stage, Chat_Model model) {
@@ -31,19 +42,39 @@ public class ChatMain_View extends View<Chat_Model> {
 
 	@Override
 	protected Scene create_GUI() {
+		
+		ServiceLocator sl = ServiceLocator.getServiceLocator();
+		Translator tl = sl.getTranslator();
+		
+		MenuBar menuBar = new MenuBar();
+		menuFile = new Menu(tl.getString("program.menu.file"));
+		menuFileLanguage = new Menu(tl.getString("program.menu.file.language"));
+		menuFile.getItems().add(menuFileLanguage);
+		
+		for (Locale locale : sl.getLocales()) {
+			MenuItem language = new MenuItem(locale.getLanguage());
+			menuFileLanguage.getItems().add(language);
+			language.setOnAction( event -> {
+				sl.setTranslator(new Translator(locale.getLanguage()));
+				updateMainTexts();
+			});
+		}
+		menuHelp = new Menu(tl.getString("program.menu.help"));
+		
+		menuBar.getMenus().addAll(menuFile, menuHelp);
 
 		root = new GridPane();
 		mainPane = new BorderPane();
 
-		lblLoggedAs = new Label(" Logged As: ");
+		lblLoggedAs = new Label(tl.getString("logged.as"));
 		txtLoggedAs = new TextField();
-		btnDisconnect = new Button(" Disconnect ");
-		lblConversation = new Label(" Conversation: ");
+		btnDisconnect = new Button(tl.getString("disconnect"));
+		lblConversation = new Label(tl.getString("conversation"));
 		txtConversation = new TextField();
-		lblMessage = new Label("Write Message: ");
+		lblMessage = new Label(tl.getString("message"));
 		txtMessage = new TextField();
-		btnSend = new Button(" Send ");
-		lblCurrentOnline = new Label(" Currently Online: ");
+		btnSend = new Button(tl.getString("send"));
+		lblCurrentlyOnline = new Label(tl.getString("currently.online"));
 		txtCurrentOnline = new TextField();
 
 		root.add(lblLoggedAs, 1, 1);
@@ -54,14 +85,33 @@ public class ChatMain_View extends View<Chat_Model> {
 		root.add(lblMessage, 1, 4);
 		root.add(txtMessage, 2, 4);
 		root.add(btnSend, 2, 5);
-		root.add(lblCurrentOnline, 4, 1);
+		root.add(lblCurrentlyOnline, 4, 1);
 		root.add(txtCurrentOnline, 4, 2);
 
+		mainPane.setTop(menuBar);
 		mainPane.setCenter(root);
 
 		Scene scene = new Scene(mainPane);
 
 		return scene;
+	}
+	
+	public void updateMainTexts() {
+		
+		Translator tl = ServiceLocator.getServiceLocator().getTranslator();
+		//the menu entries
+		menuFile.setText(tl.getString("program.menu.file"));
+		menuFileLanguage.setText(tl.getString("program.menu.file.language"));
+		menuHelp.setText(tl.getString("program.menu.help"));
+		
+		//Labels
+		lblLoggedAs.setText(tl.getString("logged.as"));
+		lblCurrentlyOnline.setText(tl.getString("currently.online"));
+		lblConversation.setText(tl.getString("conversation"));
+		lblMessage.setText(tl.getString("message"));
+		
+		//Control
+		btnDisconnect.setText(tl.getString("disconnect"));
 	}
 
 	public BorderPane getMainPane() {
@@ -137,11 +187,11 @@ public class ChatMain_View extends View<Chat_Model> {
 	}
 
 	public Label getLblCurrentOnline() {
-		return lblCurrentOnline;
+		return lblCurrentlyOnline;
 	}
 
 	public void setLblCurrentOnline(Label lblCurrentOnline) {
-		this.lblCurrentOnline = lblCurrentOnline;
+		this.lblCurrentlyOnline = lblCurrentOnline;
 	}
 
 	public TextField getTxtCurrentOnline() {
