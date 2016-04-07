@@ -1,6 +1,5 @@
 package ch.be.mtbassra;
 
-import ch.be.mtbassra.chatClasses.chatController.ChatLogin_Controller;
 import ch.be.mtbassra.chatClasses.chatController.ChatMain_Controller;
 import ch.be.mtbassra.chatClasses.chatModel.Chat_Model;
 import ch.be.mtbassra.chatClasses.chatView.ChatLogin_View;
@@ -56,7 +55,7 @@ public class Chat extends Application {
 		Chat_Model model = new Chat_Model();
 		loginView = new ChatLogin_View(loginStage, model);
 		
-		new ChatLogin_Controller(model, loginView);
+//		new ChatLogin_Controller(model, loginView);
 		new ChatMain_Controller(model, mainView);
 		
 		splashView.stop();
