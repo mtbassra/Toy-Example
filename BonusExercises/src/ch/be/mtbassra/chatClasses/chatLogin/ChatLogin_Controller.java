@@ -1,28 +1,22 @@
-package ch.be.mtbassra.chatClasses.chatController;
+package ch.be.mtbassra.chatClasses.chatLogin;
 
 import java.io.IOException;
-
 import ch.be.mtbassra.abstractClasses.Controller;
-import ch.be.mtbassra.chatClasses.chatModel.ChatAccess;
-import ch.be.mtbassra.chatClasses.chatModel.Chat_Model;
-import ch.be.mtbassra.chatClasses.chatView.ChatLogin_View;
-import ch.be.mtbassra.chatClasses.chatView.ChatMain_View;
+import ch.be.mtbassra.chatClasses.ChatAccess;
 import ch.be.mtbassra.commonClasses.ServiceLocator;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
-public class ChatMain_Controller extends Controller<Chat_Model, ChatMain_View> {
-	
+public class ChatLogin_Controller extends Controller<ChatLogin_Model, ChatLogin_View> {
+
 	ServiceLocator serviceLocator;
+	ChatLogin_Model mainView;
 	
-	ChatLogin_View loginView;
-	
-	
-	public ChatMain_Controller(Chat_Model model, ChatMain_View view) {
+	public ChatLogin_Controller(ChatLogin_Model model, ChatLogin_View view) {
 		super(model, view);
-		
+
 		// register to listen for button Start Play
-		loginView.getBtnJoin().setOnAction(new EventHandler<ActionEvent>() {
+		view.getBtnJoin().setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 
@@ -31,11 +25,11 @@ public class ChatMain_Controller extends Controller<Chat_Model, ChatMain_View> {
 			}
 
 		});
-		
+
 		serviceLocator = ServiceLocator.getServiceLocator();
-		serviceLocator.getLogger().info("Chat Main Controller Initialized");
+		serviceLocator.getLogger().info("Chat Login Controller Initialized");
 	}
-	
+
 	public void btnJoinAction() {
 
 		// try {
@@ -47,8 +41,8 @@ public class ChatMain_Controller extends Controller<Chat_Model, ChatMain_View> {
 		// }
 		// }
 
-		String server = loginView.getTxtServerAddress().getText();
-		int port = Integer.parseInt(loginView.getTxtPortAddress().getText());
+		String server = view.getTxtServerAddress().getText();
+		int port = Integer.parseInt(view.getTxtPortAddress().getText());
 
 		System.out.println("Server: " + server + ":" + port);
 
@@ -60,11 +54,7 @@ public class ChatMain_Controller extends Controller<Chat_Model, ChatMain_View> {
 		}
 
 		model.startMainView();
-		loginView.stop();
+		view.stop();
 	}
-	
-	
-
-
 
 }

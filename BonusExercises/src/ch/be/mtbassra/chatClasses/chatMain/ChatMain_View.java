@@ -1,9 +1,8 @@
-package ch.be.mtbassra.chatClasses.chatView;
+package ch.be.mtbassra.chatClasses.chatMain;
 
 import java.util.Locale;
 
 import ch.be.mtbassra.abstractClasses.View;
-import ch.be.mtbassra.chatClasses.chatModel.Chat_Model;
 import ch.be.mtbassra.commonClasses.ServiceLocator;
 import ch.be.mtbassra.commonClasses.Translator;
 import javafx.scene.Scene;
@@ -17,7 +16,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class ChatMain_View extends View<Chat_Model> {
+public class ChatMain_View extends View<ChatMain_Model> {
 	
 	private Menu menuFile;
 	private Menu menuFileLanguage;
@@ -36,7 +35,7 @@ public class ChatMain_View extends View<Chat_Model> {
 	private Label lblCurrentlyOnline;
 	private TextField txtCurrentOnline;
 
-	public ChatMain_View(Stage stage, Chat_Model model) {
+	public ChatMain_View(Stage stage, ChatMain_Model model) {
 		super(stage, model);
 	}
 

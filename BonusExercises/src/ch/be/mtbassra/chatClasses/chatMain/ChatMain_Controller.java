@@ -1,24 +1,25 @@
-//package ch.be.mtbassra.chatClasses.chatController;
+//package ch.be.mtbassra.chatClasses.chatMain;
 //
 //import java.io.IOException;
+//
 //import ch.be.mtbassra.abstractClasses.Controller;
-//import ch.be.mtbassra.chatClasses.chatModel.ChatAccess;
-//import ch.be.mtbassra.chatClasses.chatModel.Chat_Model;
-//import ch.be.mtbassra.chatClasses.chatView.ChatLogin_View;
-//import ch.be.mtbassra.chatClasses.chatView.ChatMain_View;
+//import ch.be.mtbassra.chatClasses.ChatAccess;
+//import ch.be.mtbassra.chatClasses.chatLogin.ChatLogin_View;
 //import ch.be.mtbassra.commonClasses.ServiceLocator;
 //import javafx.event.ActionEvent;
 //import javafx.event.EventHandler;
 //
-//public class ChatLogin_Controller extends Controller<Chat_Model, ChatLogin_View> {
-//
+//public class ChatMain_Controller extends Controller<ChatMain_Model, ChatMain_View> {
+//	
 //	ServiceLocator serviceLocator;
-//	ChatMain_View mainView;
-//	public ChatLogin_Controller(Chat_Model model, ChatLogin_View view) {
+//	ChatLogin_View loginView;
+//	
+//	
+//	public ChatMain_Controller(ChatMain_Model model, ChatMain_View view) {
 //		super(model, view);
-//
+//		
 //		// register to listen for button Start Play
-//		view.getBtnJoin().setOnAction(new EventHandler<ActionEvent>() {
+//		loginView.getBtnJoin().setOnAction(new EventHandler<ActionEvent>() {
 //			@Override
 //			public void handle(ActionEvent event) {
 //
@@ -27,11 +28,11 @@
 //			}
 //
 //		});
-//
+//		
 //		serviceLocator = ServiceLocator.getServiceLocator();
-//		serviceLocator.getLogger().info("Chat Login Controller Initialized");
+//		serviceLocator.getLogger().info("Chat Main Controller Initialized");
 //	}
-//
+//	
 //	public void btnJoinAction() {
 //
 //		// try {
@@ -43,8 +44,8 @@
 //		// }
 //		// }
 //
-//		String server = view.getTxtServerAddress().getText();
-//		int port = Integer.parseInt(view.getTxtPortAddress().getText());
+//		String server = loginView.getTxtServerAddress().getText();
+//		int port = Integer.parseInt(loginView.getTxtPortAddress().getText());
 //
 //		System.out.println("Server: " + server + ":" + port);
 //
@@ -56,7 +57,11 @@
 //		}
 //
 //		model.startMainView();
-//		view.stop();
+//		loginView.stop();
 //	}
+//	
+//	
+//
+//
 //
 //}

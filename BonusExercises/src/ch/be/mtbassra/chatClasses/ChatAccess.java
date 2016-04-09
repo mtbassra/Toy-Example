@@ -1,4 +1,4 @@
-package ch.be.mtbassra.chatClasses.chatModel;
+package ch.be.mtbassra.chatClasses;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

@@ -1,9 +1,8 @@
 package ch.be.mtbassra;
 
-import ch.be.mtbassra.chatClasses.chatController.ChatMain_Controller;
-import ch.be.mtbassra.chatClasses.chatModel.Chat_Model;
-import ch.be.mtbassra.chatClasses.chatView.ChatLogin_View;
-import ch.be.mtbassra.chatClasses.chatView.ChatMain_View;
+import ch.be.mtbassra.chatClasses.chatLogin.ChatLogin_View;
+import ch.be.mtbassra.chatClasses.chatMain.ChatMain_View;
+import ch.be.mtbassra.chatClasses.chatMain.ChatMain_Model;
 import ch.be.mtbassra.commonClasses.ServiceLocator;
 import ch.be.mtbassra.splashScreen.Splash_Controller;
 import ch.be.mtbassra.splashScreen.Splash_Model;
@@ -52,11 +51,11 @@ public class Chat extends Application {
 	public void startLoginView() {
 		
 		Stage loginStage = new Stage();
-		Chat_Model model = new Chat_Model();
+		ChatMain_Model model = new ChatMain_Model();
 		loginView = new ChatLogin_View(loginStage, model);
 		
 //		new ChatLogin_Controller(model, loginView);
-		new ChatMain_Controller(model, mainView);
+//		new ChatMain_Controller(model, mainView);
 		
 		splashView.stop();
 		splashView = null;

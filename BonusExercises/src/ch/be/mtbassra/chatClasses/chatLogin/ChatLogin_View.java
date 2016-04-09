@@ -1,8 +1,8 @@
-package ch.be.mtbassra.chatClasses.chatView;
+package ch.be.mtbassra.chatClasses.chatLogin;
 
 import java.util.Locale;
 import ch.be.mtbassra.abstractClasses.View;
-import ch.be.mtbassra.chatClasses.chatModel.Chat_Model;
+import ch.be.mtbassra.chatClasses.chatMain.ChatMain_Model;
 import ch.be.mtbassra.commonClasses.ServiceLocator;
 import ch.be.mtbassra.commonClasses.Translator;
 import javafx.scene.Scene;
@@ -16,7 +16,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class ChatLogin_View extends View<Chat_Model> {
+public class ChatLogin_View extends View<ChatMain_Model> {
 	
 	private Menu menuFile;
 	private Menu menuFileLanguage;
@@ -33,7 +33,7 @@ public class ChatLogin_View extends View<Chat_Model> {
 	private TextField txtPortAddress;
 	private TextField txtUserName;
 
-	public ChatLogin_View(Stage stage, Chat_Model model) {
+	public ChatLogin_View(Stage stage, ChatMain_Model model) {
 		super(stage, model);
 		stage.setTitle("CHAT WITH ALL");
 		
