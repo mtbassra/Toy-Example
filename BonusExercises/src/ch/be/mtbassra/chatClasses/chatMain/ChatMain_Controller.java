@@ -1,67 +1,31 @@
-//package ch.be.mtbassra.chatClasses.chatMain;
-//
-//import java.io.IOException;
-//
-//import ch.be.mtbassra.abstractClasses.Controller;
-//import ch.be.mtbassra.chatClasses.ChatAccess;
-//import ch.be.mtbassra.chatClasses.chatLogin.ChatLogin_View;
-//import ch.be.mtbassra.commonClasses.ServiceLocator;
-//import javafx.event.ActionEvent;
-//import javafx.event.EventHandler;
-//
-//public class ChatMain_Controller extends Controller<ChatMain_Model, ChatMain_View> {
-//	
-//	ServiceLocator serviceLocator;
-//	ChatLogin_View loginView;
-//	
-//	
-//	public ChatMain_Controller(ChatMain_Model model, ChatMain_View view) {
-//		super(model, view);
-//		
-//		// register to listen for button Start Play
-//		loginView.getBtnJoin().setOnAction(new EventHandler<ActionEvent>() {
-//			@Override
-//			public void handle(ActionEvent event) {
-//
-//				btnJoinAction();
-//
-//			}
-//
-//		});
-//		
-//		serviceLocator = ServiceLocator.getServiceLocator();
-//		serviceLocator.getLogger().info("Chat Main Controller Initialized");
-//	}
-//	
-//	public void btnJoinAction() {
-//
-//		// try {
-//		// String userName = view.getTxtUserName().getText();
-//		// for (String oldUser : model.getUsers()) {
-//		// if (oldUser.equalsIgnoreCase(userName)) {
-//		// System.out.println("User name: " + userName + " already exists");
-//		// return;
-//		// }
-//		// }
-//
-//		String server = loginView.getTxtServerAddress().getText();
-//		int port = Integer.parseInt(loginView.getTxtPortAddress().getText());
-//
-//		System.out.println("Server: " + server + ":" + port);
-//
-//		ChatAccess access = null;
-//		try {
-//			access = new ChatAccess(server, port);
-//		} catch (IOException ex) {
-//
-//		}
-//
-//		model.startMainView();
-//		loginView.stop();
-//	}
-//	
-//	
-//
-//
-//
-//}
+package ch.be.mtbassra.chatClasses.chatMain;
+
+import ch.be.mtbassra.abstractClasses.Controller;
+import ch.be.mtbassra.chatClasses.User;
+import ch.be.mtbassra.chatClasses.chatLogin.ChatLogin_View;
+import ch.be.mtbassra.commonClasses.ServiceLocator;
+
+public class ChatMain_Controller extends Controller<ChatMain_Model, ChatMain_View> {
+	
+	User user;
+	ServiceLocator serviceLocator;	
+	
+	public ChatMain_Controller(ChatMain_Model model, ChatMain_View view) {
+		super(model, view);
+		
+		serviceLocator = ServiceLocator.getServiceLocator();
+		serviceLocator.getLogger().info("Chat Main Controller Initialized");
+		
+		
+		
+		registerUser();
+	}
+
+	public void registerUser() {
+		
+		
+		view.getTxtCurrentOnline().setText(user.getUserName());
+	}
+
+
+}

@@ -1,8 +1,10 @@
 package ch.be.mtbassra.chatClasses.chatLogin;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import ch.be.mtbassra.abstractClasses.View;
-import ch.be.mtbassra.chatClasses.chatMain.ChatMain_Model;
+import ch.be.mtbassra.chatClasses.chatMain.ChatMain_View;
 import ch.be.mtbassra.commonClasses.ServiceLocator;
 import ch.be.mtbassra.commonClasses.Translator;
 import javafx.scene.Scene;
@@ -16,7 +18,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class ChatLogin_View extends View<ChatMain_Model> {
+public class ChatLogin_View extends View<ChatLogin_Model> {
+	
+	private List<ChatMain_View> mainViews;
 	
 	private Menu menuFile;
 	private Menu menuFileLanguage;
@@ -33,8 +37,10 @@ public class ChatLogin_View extends View<ChatMain_Model> {
 	private TextField txtPortAddress;
 	private TextField txtUserName;
 
-	public ChatLogin_View(Stage stage, ChatMain_Model model) {
+	public ChatLogin_View(Stage stage, ChatLogin_Model model) {
 		super(stage, model);
+		
+		mainViews = new ArrayList<ChatMain_View>();
 		stage.setTitle("CHAT WITH ALL");
 		
 		ServiceLocator.getServiceLocator().getLogger().info("Chat Login View initialized");
@@ -72,7 +78,7 @@ public class ChatLogin_View extends View<ChatMain_Model> {
 		lblServer = new Label(tl.getString("server"));
 		lblPort = new Label(tl.getString("port"));
 		txtUserName = new TextField();
-		txtServerAddress = new TextField("LocalHost");
+		txtServerAddress = new TextField("localhost");
 		txtPortAddress = new TextField("8888");
 		btnConnect = new Button(tl.getString("connect"));
 

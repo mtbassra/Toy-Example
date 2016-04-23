@@ -1,5 +1,7 @@
 package ch.be.mtbassra;
 
+import ch.be.mtbassra.chatClasses.chatLogin.ChatLogin_Controller;
+import ch.be.mtbassra.chatClasses.chatLogin.ChatLogin_Model;
 import ch.be.mtbassra.chatClasses.chatLogin.ChatLogin_View;
 import ch.be.mtbassra.chatClasses.chatMain.ChatMain_View;
 import ch.be.mtbassra.chatClasses.chatMain.ChatMain_Model;
@@ -12,8 +14,10 @@ import javafx.application.Platform;
 import javafx.stage.Stage;
 
 public class Chat extends Application {
+	
 	private static Chat mainProgram; // singleton
 	private Splash_View splashView;
+	private ChatLogin_Model loginModel;
 	private ChatLogin_View loginView;
 	private ChatMain_View mainView;
 	private ServiceLocator serviceLocator; //resources, after initialization
@@ -36,6 +40,7 @@ public class Chat extends Application {
 		
 		//Create and display the splash screen and model
 		Splash_Model splashModel = new Splash_Model();
+		
 		splashView = new Splash_View(primaryStage, splashModel);
 		new Splash_Controller(this, splashModel, splashView);
 		splashView.start();
@@ -51,10 +56,12 @@ public class Chat extends Application {
 	public void startLoginView() {
 		
 		Stage loginStage = new Stage();
-		ChatMain_Model model = new ChatMain_Model();
-		loginView = new ChatLogin_View(loginStage, model);
 		
-//		new ChatLogin_Controller(model, loginView);
+		loginModel = new ChatLogin_Model();
+		
+		loginView = new ChatLogin_View(loginStage, loginModel);
+		
+		new ChatLogin_Controller(loginModel, loginView);
 //		new ChatMain_Controller(model, mainView);
 		
 		splashView.stop();
