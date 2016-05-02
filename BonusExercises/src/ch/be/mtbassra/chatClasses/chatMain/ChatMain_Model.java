@@ -12,42 +12,44 @@ import ch.be.mtbassra.commonClasses.ServiceLocator;
 import javafx.stage.Stage;
 
 public class ChatMain_Model extends Model {
+
+
+	private ArrayList<ChatMain_View> mainViews = new ArrayList<ChatMain_View>();
 	
-	private User user;
-	private static Set<User> users = new TreeSet<User>();
-	private List<ChatMain_View> mainViews = new ArrayList<ChatMain_View>();
-	
-	
-	
+	private static ArrayList<User> users = new ArrayList<User>();
 	
 	ServiceLocator serviceLocator;
-	ChatMain_View mainView;
+
 	
 	
 	public ChatMain_Model() {
+		super();
 		
-		setMainViews(new ArrayList<ChatMain_View>());
 		
 		serviceLocator = ServiceLocator.getServiceLocator();
 		serviceLocator.getLogger().info("Chat Model Initialized");
 	}
+
 	
-	public void registerUser(){
-		users.add(user);
+	public ArrayList<ChatMain_View> getMainView() {
 		
-		
-	}
-	
-	public List<ChatMain_View> getMainViews() {
 		return mainViews;
 	}
 
 
 
-	public void setMainViews(List<ChatMain_View> mainViews) {
-		this.mainViews = mainViews;
+	public void setMainViews(ChatMain_View mView) {
+		
+		mainViews.add(mView);
 	}
 
-
+	public void setUser(User user) {
+		
+		users.add(user);
+	}
+	public ArrayList<User> getUsers() {
+		
+		return users;
+	}
 
 }

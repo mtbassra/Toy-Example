@@ -8,6 +8,7 @@ import ch.be.mtbassra.Chat;
 import ch.be.mtbassra.abstractClasses.Controller;
 import ch.be.mtbassra.chatClasses.ChatAccess;
 import ch.be.mtbassra.chatClasses.User;
+import ch.be.mtbassra.chatClasses.chatMain.ChatMain_Controller;
 import ch.be.mtbassra.chatClasses.chatMain.ChatMain_Model;
 import ch.be.mtbassra.chatClasses.chatMain.ChatMain_View;
 import ch.be.mtbassra.commonClasses.ServiceLocator;
@@ -18,6 +19,10 @@ import javafx.stage.Stage;
 public class ChatLogin_Controller extends Controller<ChatLogin_Model, ChatLogin_View> {
 	
 	User user;
+	
+	ChatMain_Model mModel = new ChatMain_Model();
+	ChatMain_Controller mController;
+	ChatMain_View mView;
 
 	ServiceLocator serviceLocator;
 	
@@ -40,41 +45,36 @@ public class ChatLogin_Controller extends Controller<ChatLogin_Model, ChatLogin_
 	}
 
 	public void btnJoinAction() {
+		
+		
+		User user = new User();
 				
-//		String userName = view.getTxtUserName().getText();
-//		for(String oldUser: mModel.getUsers()) {
-//			if (oldUser.equalsIgnoreCase(userName)) {
-//				System.out.println("User Exists");
-//			}
-//			
-//		}
-//		user.setUserName(userName);
-//		
-//		ClientStart.serverIp = InetAddress.getByName(initialView.TxtServerAddress.getText());
-//		try {
-//			user.setServer(InetAddress.getByName(view.getTxtServerAddress().getText()));
-//		} catch (UnknownHostException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		int port = Integer.parseInt(view.getTxtPortAddress().getText());
-//		
-//		user.setUserName(userName);
-//		user.setServer(server);
-//		user.setPort(port);
-//		
-//		System.out.println("User: " + userName + ": " + "Server: " + server + ": " + port);
-//
-//		ChatAccess access = null;
-//		try {
-//			access = new ChatAccess(server, port);
-//		} catch (IOException ex) {
-//			System.out.println("Cannot Connect To Server");
-//		}
+		String userName = view.getTxtUserName().getText();
+		for(User oldUser: mModel.getUsers()) {
+			if (oldUser.getUserName().equalsIgnoreCase(user.getUserName())) {
+				System.out.println("User Exists");
+			}
+			
+		}
+		user.setUserName(userName);
 		
+
+		
+		try {
+			user.setServer(InetAddress.getByName(view.getTxtServerAddress().getText()));
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		int port = Integer.parseInt(view.getTxtPortAddress().getText());	
+		user.setPort(port);
+		
+
+		mModel.setUser(user);
 		model.startMainView();
-		
 		view.stop();
+	
+
 	}
 
 }

@@ -4,6 +4,7 @@ import ch.be.mtbassra.chatClasses.chatLogin.ChatLogin_Controller;
 import ch.be.mtbassra.chatClasses.chatLogin.ChatLogin_Model;
 import ch.be.mtbassra.chatClasses.chatLogin.ChatLogin_View;
 import ch.be.mtbassra.chatClasses.chatMain.ChatMain_View;
+import ch.be.mtbassra.chatClasses.chatMain.ChatMain_Controller;
 import ch.be.mtbassra.chatClasses.chatMain.ChatMain_Model;
 import ch.be.mtbassra.commonClasses.ServiceLocator;
 import ch.be.mtbassra.splashScreen.Splash_Controller;
@@ -19,7 +20,9 @@ public class Chat extends Application {
 	private Splash_View splashView;
 	private ChatLogin_Model loginModel;
 	private ChatLogin_View loginView;
+	private ChatMain_Model mainModel;
 	private ChatMain_View mainView;
+	
 	private ServiceLocator serviceLocator; //resources, after initialization
 	
 	public static void main(String[] args) {
@@ -62,7 +65,6 @@ public class Chat extends Application {
 		loginView = new ChatLogin_View(loginStage, loginModel);
 		
 		new ChatLogin_Controller(loginModel, loginView);
-//		new ChatMain_Controller(model, mainView);
 		
 		splashView.stop();
 		splashView = null;

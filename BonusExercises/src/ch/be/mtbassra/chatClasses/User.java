@@ -11,21 +11,11 @@ public class User {
 	private InetAddress server = InetAddress.getLoopbackAddress();
 	private int port;
 	
-    private static Set<String> users = new TreeSet<String>();
-	
-	
-	public User(String userName, InetAddress server, int port) {
-		this.userName = userName;
-		this.server = server;
-		this.port = port;
-
+	public User(){
+		
 	}
-	
-    public static Set<String> getUsers() {
-        return users;
-    }
-	
-	public String getUserName() {
+
+    public String getUserName() {
 		return userName;
 	}
 	
@@ -51,38 +41,5 @@ public class User {
 	public void setPort(int port) {
 		this.port = port;
 	}
-		
 
 }
-	
-	
-//
-//private static final long serialVersionUID = 1L;
-//private InetAddress ipAddress = InetAddress.getLoopbackAddress();
-//private int portNumber = 0;
-//
-//
-//public Player() {
-//}
-//
-//
-//
-//public InetAddress getIpAddress() {
-//	return ipAddress;
-//}
-//
-//
-//public void setIpAddress(InetAddress ipAddress) {
-//	this.ipAddress = ipAddress;
-//}
-//
-//
-//public int getPortNumber() {
-//	return portNumber;
-//}
-//
-//
-//public void setPortNumber(int portNumber) {
-//	this.portNumber = portNumber;
-//}
-//}
