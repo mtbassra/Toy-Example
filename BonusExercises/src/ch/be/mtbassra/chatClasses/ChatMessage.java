@@ -1,78 +1,40 @@
 package ch.be.mtbassra.chatClasses;
 
-import java.io.Serializable;
+import java.io.*;
+/*
+ * This class defines the different type of messages that will be exchanged between the
+ * Clients and the Server. 
+ * When talking from a Java Client to a Java Server a lot easier to pass Java objects, no 
+ * need to count bytes or to wait for a line feed at the end of the frame
+ */
+public class ChatMessage implements Serializable {
 
-public class ChatMessage<T> implements Serializable {
+	protected static final long serialVersionUID = 1112122200L;
+
+	// The different types of message sent by the Client
+	// WHOISIN to receive the list of the users connected
+	// MESSAGE an ordinary message
+	// LOGOUT to disconnect from the Server
+	public static final int WHOISIN = 0;
+
+	public static final int MESSAGE = 1;
+
+	public static final int LOGOUT = 2;
 	
+	private int type;
+	private String message;
 	
-	/*
-	 * Declaring serialVersionUID, to verify that the sender and receiver of a serialized object have loaded classes.
-	 *  Eclipse requested it.
-	 */
-	private static final long serialVersionUID = -1041013198570731751L;
-
+	// constructor
+	public ChatMessage(int type, String message) {
+		this.type = type;
+		this.message = message;
+	}
 	
-	
-	
-	
-    /*
-     * Declaring the Variables, for further use.
-     * - Message Type
-     * - payload
-     * - Sender
-     */
-    
-    public enum MessageType {
-
-        TEXT,
-        NEW_ONLINE,
-        NEW_OFFLINE,
-        HISTORY;
-    }
-
-    private MessageType messageType;
-    private T payload;
-    private String sender;
-    
-    
-    
-    // Creating the object
-    public ChatMessage() {
-    }
-
-    public ChatMessage(MessageType type, T payload) {
-        this.messageType = type;
-        this.payload = payload;
-    }
-    
-    
-    
-    
-    /*
-     * Getters and Setters Methods
-     */
-    
-    public MessageType getMessageType() {
-        return messageType;
-    }
-
-    public void setMessageType(MessageType messageType) {
-        this.messageType = messageType;
-    }
-
-    public T getPayload() {
-        return payload;
-    }
-
-    public void setPayload(T payload) {
-        this.payload = payload;
-    }
-
-    public String getSender() {
-        return sender;
-    }
-
-    public void setSender(String sender) {
-        this.sender = sender;
-    }
+	// getters
+	int getType() {
+		return type;
+	}
+	String getMessage() {
+		return message;
+	}
 }

@@ -1,10 +1,7 @@
 package ch.be.mtbassra.chatClasses.chatLogin;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import ch.be.mtbassra.abstractClasses.Model;
-import ch.be.mtbassra.chatClasses.ChatAccess;
-import ch.be.mtbassra.chatClasses.User;
+import ch.be.mtbassra.chatClasses.Client;
 import ch.be.mtbassra.chatClasses.chatMain.ChatMain_Controller;
 import ch.be.mtbassra.chatClasses.chatMain.ChatMain_Model;
 import ch.be.mtbassra.chatClasses.chatMain.ChatMain_View;
@@ -17,6 +14,8 @@ public class ChatLogin_Model extends Model {
 	ChatLogin_View lView;
 	ChatMain_View mView;
 	ChatMain_Controller mController;
+	
+	Client client;
 	
 
 	
@@ -36,6 +35,9 @@ public class ChatLogin_Model extends Model {
 		mView = new ChatMain_View(stage, mModel);
 		
 		mModel.getMainView().add(mView);
+		
+		mModel.startClient();
+		
 		mView.start();
 		mController = new ChatMain_Controller(mModel, mView);
 		

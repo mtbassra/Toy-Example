@@ -1,22 +1,19 @@
 package ch.be.mtbassra.chatClasses.chatMain;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
-
+import java.util.Scanner;
 import ch.be.mtbassra.abstractClasses.Model;
-import ch.be.mtbassra.chatClasses.User;
-import ch.be.mtbassra.chatClasses.chatLogin.ChatLogin_View;
+import ch.be.mtbassra.chatClasses.ChatMessage;
+import ch.be.mtbassra.chatClasses.Client;
 import ch.be.mtbassra.commonClasses.ServiceLocator;
-import javafx.stage.Stage;
 
 public class ChatMain_Model extends Model {
 
+	Client client;
 
 	private ArrayList<ChatMain_View> mainViews = new ArrayList<ChatMain_View>();
 	
-	private static ArrayList<User> users = new ArrayList<User>();
+	private static ArrayList<Client> clients = new ArrayList<Client>();
 	
 	ServiceLocator serviceLocator;
 
@@ -36,20 +33,55 @@ public class ChatMain_Model extends Model {
 		return mainViews;
 	}
 
-
-
 	public void setMainViews(ChatMain_View mView) {
 		
 		mainViews.add(mView);
 	}
 
-	public void setUser(User user) {
+	public void setUser(Client client) {
 		
-		users.add(user);
+		clients.add(client);
 	}
-	public ArrayList<User> getUsers() {
+	public ArrayList<Client> getClient() {
 		
-		return users;
+		return clients;
 	}
+
+	public void startClient() {
+		
+		// create the Client object
+		Client client = clients.get(0);
+		// test if we can start the connection to the Server
+		// if it failed nothing we can do
+		if(!client.start())
+			return;
+		
+		// wait for messages from user
+		Scanner scan = new Scanner(System.in);
+		// loop forever for message from the user
+		while(true) {
+			System.out.print("> ");
+			// read message from user
+			String msg = scan.nextLine();
+			// logout if message is LOGOUT
+			if(msg.equalsIgnoreCase("LOGOUT")) {
+				client.sendMessage(new ChatMessage(ChatMessage.LOGOUT, ""));
+				// break to do the disconnect
+				break;
+			}
+			// message WhoIsIn
+			else if(msg.equalsIgnoreCase("WHOISIN")) {
+				client.sendMessage(new ChatMessage(ChatMessage.WHOISIN, ""));				
+			}
+			else {				// default to ordinary message
+				client.sendMessage(new ChatMessage(ChatMessage.MESSAGE, msg));
+			}
+		}
+		// done disconnect
+		client.disconnect();	
+	}
+	
+	
+
 
 }

@@ -1,24 +1,17 @@
 package ch.be.mtbassra.chatClasses.chatLogin;
 
-import java.io.IOException;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-
-import ch.be.mtbassra.Chat;
 import ch.be.mtbassra.abstractClasses.Controller;
-import ch.be.mtbassra.chatClasses.ChatAccess;
-import ch.be.mtbassra.chatClasses.User;
+import ch.be.mtbassra.chatClasses.Client;
 import ch.be.mtbassra.chatClasses.chatMain.ChatMain_Controller;
 import ch.be.mtbassra.chatClasses.chatMain.ChatMain_Model;
 import ch.be.mtbassra.chatClasses.chatMain.ChatMain_View;
 import ch.be.mtbassra.commonClasses.ServiceLocator;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.stage.Stage;
 
 public class ChatLogin_Controller extends Controller<ChatLogin_Model, ChatLogin_View> {
 	
-	User user;
+	Client client;
 	
 	ChatMain_Model mModel = new ChatMain_Model();
 	ChatMain_Controller mController;
@@ -45,32 +38,25 @@ public class ChatLogin_Controller extends Controller<ChatLogin_Model, ChatLogin_
 	}
 
 	public void btnJoinAction() {
-		
-		
-		User user = new User();
-				
+						
 		String userName = view.getTxtUserName().getText();
-		for(User oldUser: mModel.getUsers()) {
-			if (oldUser.getUserName().equalsIgnoreCase(user.getUserName())) {
+		for(Client oldUser: mModel.getClient()) {
+			if (oldUser.getUserName().equalsIgnoreCase(client.getUserName())) {
 				System.out.println("User Exists");
 			}
 			
 		}
-		user.setUserName(userName);
+		Client client = new Client();
 		
-
+		client.setUserName(userName);
 		
-		try {
-			user.setServer(InetAddress.getByName(view.getTxtServerAddress().getText()));
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		client.setServer(view.getTxtServerAddress().getText());
+		
 		int port = Integer.parseInt(view.getTxtPortAddress().getText());	
-		user.setPort(port);
+		client.setPort(port);
 		
 
-		mModel.setUser(user);
+		mModel.setUser(client);
 		model.startMainView();
 		view.stop();
 	
