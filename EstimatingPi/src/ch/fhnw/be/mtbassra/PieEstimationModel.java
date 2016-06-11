@@ -3,6 +3,8 @@ package ch.fhnw.be.mtbassra;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.Group;
 
 public class PieEstimationModel {
@@ -55,15 +57,17 @@ public class PieEstimationModel {
 		else
 			return false;
 	}
+	
+	public int getTotalPoints() {
+		return points.size();
+	}	
 
 	public int getPointsInCircle() {
 
 		return pointsInCircle.size();
 	}
 
-	public int getTotalPoints() {
-		return points.size();
-	}
+
 
 	public double getRatio() {
 
