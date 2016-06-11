@@ -40,7 +40,7 @@ public class PieEstimationView {
 	TextField txtPie;
 
 	protected PieEstimationView(Stage stage, PieEstimationModel model) {
-		
+
 		this.stage = stage;
 		lblTotalPoints = new Label("Total Points Generated: ");
 		lblPointsInCircle = new Label("Points in the Circle: ");
@@ -88,38 +88,17 @@ public class PieEstimationView {
 		arc.setType(ArcType.ROUND);
 		arc.setFill(Color.ORANGE);
 		arc.relocate(0, 0);
-		
+
 		// pane for placing rectangle and circle and Later Points
 		pane.setPrefSize(width, height);
 		pane.setStyle("-fx-background-color: WHITE;");
 		pane.getChildren().addAll(rect, arc);
-	
-		
-//		int numPoints = (int) Math.floor(Math.random() * 101);
-//		
-//		ArrayList<Point> points = new ArrayList<Point>();
-//		System.out.println("PointsGenrated: " + numPoints);
-//		
-//		for (int i = 0; i < numPoints; i++) {
-//			Point point = new Point();
-//			point.relocate(Math.random()*width, Math.random()*height);
-//			point.setxValue(point.getLayoutX());
-//			point.setyValue(point.getLayoutY());
-//		    System.out.println("'" + points.indexOf(i) + "' has x-value " + point.getxValue());
-//		    System.out.println("'" + points.indexOf(i) + "' has y-value " + point.getyValue());
-//			
-//			points.add(point);
-//		}
-//	    System.out.println("Points in ArrayList" + points.size());
-//		
-//		for (Point p : points) {
-//			pane.getChildren().addAll(p);
-//		}
-		
+
 		Group group = new Group();
 		group.getChildren().add(pane);
 
 		BorderPane root = new BorderPane();
+		root.setPrefSize(350, 350);
 		root.setCenter(group);
 		root.setBottom(fields);
 
@@ -129,10 +108,11 @@ public class PieEstimationView {
 		stage.sizeToScene();
 		stage.show();
 	}
-	
+
 	public void start() {
 		stage.show();
 	}
+
 	public void stop() {
 		stage.hide();
 	}

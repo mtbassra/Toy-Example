@@ -3,7 +3,7 @@ package ch.fhnw.be.mtbassra;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-public class PieEstimation extends Application  {
+public class PieEstimation extends Application {
 
 	private PieEstimationModel model;
 	private PieEstimationView view;
@@ -19,7 +19,7 @@ public class PieEstimation extends Application  {
 		model = new PieEstimationModel();
 		view = new PieEstimationView(primaryStage, model);
 		controller = new PieEstimationController(model, view);
-		
+
 		view.start();
 	}
 
