@@ -1,7 +1,6 @@
 package ch.be.mtbassra.chatClasses.chatMain;
 
 import java.util.Locale;
-
 import ch.be.mtbassra.abstractClasses.View;
 import ch.be.mtbassra.commonClasses.ServiceLocator;
 import ch.be.mtbassra.commonClasses.Translator;

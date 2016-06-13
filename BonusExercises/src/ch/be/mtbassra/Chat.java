@@ -1,5 +1,7 @@
 package ch.be.mtbassra;
 
+import ch.be.mtbassra.chatClasses.Client;
+import ch.be.mtbassra.chatClasses.Server;
 import ch.be.mtbassra.chatClasses.chatLogin.ChatLogin_Controller;
 import ch.be.mtbassra.chatClasses.chatLogin.ChatLogin_Model;
 import ch.be.mtbassra.chatClasses.chatLogin.ChatLogin_View;
@@ -19,11 +21,17 @@ public class Chat extends Application {
 	private ChatLogin_Model loginModel;
 	private ChatLogin_View loginView;
 	private ChatMain_View mainView;
+	private Server server;
+	private final int PORT = 8888;
+	private boolean serverStarted = false;
+	
+	private Client client;
 	
 	private ServiceLocator serviceLocator; //resources, after initialization
 	
 	public static void main(String[] args) {
 		launch(args);
+
 	}
 	
 	@Override
@@ -50,10 +58,30 @@ public class Chat extends Application {
 		
 		//Display the splash screen and begin the initialization
 		splashModel.initialize();
-		
+		System.out.println("Splash model is initialized");
 	}
 	
+	/*
+	public void startServer() {
+
+		if(!serverStarted) {
+			Server server = new Server(PORT);	
+			server.start();
+			serverStarted = true;
+			serviceLocator.getLogger().info("Server is listening for clients at: " + PORT);
+		}
+	}
+	*/
+	
 	public void startLoginView() {
+		
+		client = new Client();
+		/*
+		client.setUserName("tahir");
+		client.setPort(8888);
+		client.setServer("localHost");
+		client.start();
+		*/
 		
 		Stage loginStage = new Stage();
 		
@@ -61,7 +89,7 @@ public class Chat extends Application {
 		
 		loginView = new ChatLogin_View(loginStage, loginModel);
 		
-		new ChatLogin_Controller(loginModel, loginView);
+		new ChatLogin_Controller(loginModel, loginView, client);
 		
 		splashView.stop();
 		splashView = null;
@@ -71,9 +99,10 @@ public class Chat extends Application {
 	
 	@Override	
 	public void stop(){
+		
 		serviceLocator.getConfiguration().save();
 		
-		if (loginView != null && mainView  != null)  {
+		if (loginView != null && mainView != null)  {
 			//Make the view invisible
 			loginView.stop();
 			mainView.stop();

@@ -1,10 +1,7 @@
 package ch.be.mtbassra.chatClasses.chatLogin;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 import ch.be.mtbassra.abstractClasses.View;
-import ch.be.mtbassra.chatClasses.chatMain.ChatMain_View;
 import ch.be.mtbassra.commonClasses.ServiceLocator;
 import ch.be.mtbassra.commonClasses.Translator;
 import javafx.scene.Scene;
@@ -19,9 +16,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class ChatLogin_View extends View<ChatLogin_Model> {
-	
-	private List<ChatMain_View> mainViews;
-	
+		
 	private Menu menuFile;
 	private Menu menuFileLanguage;
 	private Menu menuHelp;
@@ -40,7 +35,6 @@ public class ChatLogin_View extends View<ChatLogin_Model> {
 	public ChatLogin_View(Stage stage, ChatLogin_Model model) {
 		super(stage, model);
 		
-		mainViews = new ArrayList<ChatMain_View>();
 		stage.setTitle("CHAT WITH ALL");
 		
 		ServiceLocator.getServiceLocator().getLogger().info("Chat Login View initialized");
@@ -65,6 +59,7 @@ public class ChatLogin_View extends View<ChatLogin_Model> {
 				updateLoginTexts();
 			});
 		}
+		
 		menuHelp = new Menu(tl.getString("program.menu.help"));
 		
 		menuBar.getMenus().addAll(menuFile, menuHelp);

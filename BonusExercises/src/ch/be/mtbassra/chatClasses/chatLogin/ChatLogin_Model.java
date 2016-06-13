@@ -15,10 +15,7 @@ public class ChatLogin_Model extends Model {
 	ChatMain_View mView;
 	ChatMain_Controller mController;
 	
-	Client client;
-	
 
-	
 	public ChatLogin_Model() {
 		super();
 		
@@ -34,14 +31,13 @@ public class ChatLogin_Model extends Model {
 		
 		mView = new ChatMain_View(stage, mModel);
 		
-		mModel.getMainView().add(mView);
-		
-		mModel.startClient();
+		mModel.setMainViews(mView);
 		
 		mView.start();
-		mController = new ChatMain_Controller(mModel, mView);
-		
+			
 		serviceLocator.getLogger().info("Chat Main View Started");
+		
+		mController = new ChatMain_Controller(mModel, mView);
 				
 	}
 

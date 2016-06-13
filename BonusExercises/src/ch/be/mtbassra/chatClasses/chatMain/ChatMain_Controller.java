@@ -19,19 +19,17 @@ public class ChatMain_Controller extends Controller<ChatMain_Model, ChatMain_Vie
 	}
 
 	public void registerUser() {
-		
-		String onlineUsers;
-		for (Client client : model.getClient()) {
-			onlineUsers = client.getUserName();			
+		/*
+		String onlineUsers = model.getClient().getUserName();			
 		for (ChatMain_View mainViews : model.getMainView()) {
 			mainViews.getTxtCurrentOnline().setText(onlineUsers);
-		}
+		
 		}
 		
-		String userName = model.getClient().get(0).getUserName();
+		String userName = model.getClient().getUserName();
 		model.getMainView().get(0).getTxtLoggedAs().setText(userName);
 		System.out.println(userName);
-
+*/
 		}
 
 

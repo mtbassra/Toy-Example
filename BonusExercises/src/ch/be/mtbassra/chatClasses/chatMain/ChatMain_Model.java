@@ -2,6 +2,9 @@ package ch.be.mtbassra.chatClasses.chatMain;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.TreeSet;
+
 import ch.be.mtbassra.abstractClasses.Model;
 import ch.be.mtbassra.chatClasses.ChatMessage;
 import ch.be.mtbassra.chatClasses.Client;
@@ -9,48 +12,27 @@ import ch.be.mtbassra.commonClasses.ServiceLocator;
 
 public class ChatMain_Model extends Model {
 
-	Client client;
-
 	private ArrayList<ChatMain_View> mainViews = new ArrayList<ChatMain_View>();
-	
-	private static ArrayList<Client> clients = new ArrayList<Client>();
+
 	
 	ServiceLocator serviceLocator;
+	Client client;
 
 	
 	
 	public ChatMain_Model() {
 		super();
 		
-		
 		serviceLocator = ServiceLocator.getServiceLocator();
 		serviceLocator.getLogger().info("Chat Model Initialized");
 	}
-
 	
-	public ArrayList<ChatMain_View> getMainView() {
-		
-		return mainViews;
-	}
-
-	public void setMainViews(ChatMain_View mView) {
-		
-		mainViews.add(mView);
-	}
-
-	public void setUser(Client client) {
-		
-		clients.add(client);
-	}
-	public ArrayList<Client> getClient() {
-		
-		return clients;
-	}
-
 	public void startClient() {
-		
+		// default values
+
 		// create the Client object
-		Client client = clients.get(0);
+		client = new Client();
+
 		// test if we can start the connection to the Server
 		// if it failed nothing we can do
 		if(!client.start())
@@ -78,10 +60,24 @@ public class ChatMain_Model extends Model {
 			}
 		}
 		// done disconnect
-		client.disconnect();	
+		client.disconnect();
 	}
 	
-	
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	public ArrayList<ChatMain_View> getMainView() {
+		return mainViews;
+	}
+
+	public void setMainViews(ChatMain_View mView) {
+		mainViews.add(mView);
+	}
 
 
 }

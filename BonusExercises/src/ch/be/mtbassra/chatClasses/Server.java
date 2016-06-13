@@ -5,10 +5,14 @@ import java.net.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import ch.be.mtbassra.commonClasses.ServiceLocator;
+
 /*
  * The server that can be run both as a console application or a GUI
  */
 public class Server {
+
+	ServiceLocator serviceLocator;
 	// a unique ID for each connection
 	private static int uniqueId;
 	// an ArrayList to keep the list of the Client
@@ -17,103 +21,101 @@ public class Server {
 	private int port;
 	// the boolean that will be turned of to stop the server
 	private boolean keepGoing;
+//	private static boolean serverListning = false;
 
 	/*
-	 *  server constructor that receive the port to listen to for connection as parameter
-	 *  in console
+	 * server constructor that receive the port to listen to for connection
+	 * 
 	 */
-
 	public Server(int port) {
-
+		
+		serviceLocator = ServiceLocator.getServiceLocator();
 		// the port
 		this.port = port;
 		// ArrayList for the Client list
 		clientThread = new ArrayList<ClientThread>();
 	}
-	
+
 	public void start() {
 		keepGoing = true;
 		/* create socket server and wait for connection requests */
-		try 
-		{
+		try {
 			// the socket used by the server
 			ServerSocket serverSocket = new ServerSocket(port);
 
 			// infinite loop to wait for connections
-			while(keepGoing) 
-			{
+			while (keepGoing) {
 				// format message saying we are waiting
 				System.out.println("Server waiting for Clients on port " + port + ".");
-				
-				Socket socket = serverSocket.accept();  	// accept connection
+
+				Socket socket = serverSocket.accept(); // accept connection
 				// if I was asked to stop
-				if(!keepGoing)
+				if (!keepGoing)
 					break;
-				ClientThread t = new ClientThread(socket);  // make a thread of it
-				clientThread.add(t);									// save it in the ArrayList
+				ClientThread t = new ClientThread(socket); // make a thread of
+															// it
+				clientThread.add(t); // save it in the ArrayList
 				t.start();
 			}
-			// I was asked to stop
+			// It was asked to stop
 			try {
 				serverSocket.close();
-				for(int i = 0; i < clientThread.size(); ++i) {
+				for (int i = 0; i < clientThread.size(); ++i) {
 					ClientThread tc = clientThread.get(i);
 					try {
-					tc.sInput.close();
-					tc.sOutput.close();
-					tc.socket.close();
-					}
-					catch(IOException ioE) {
+						tc.sInput.close();
+						tc.sOutput.close();
+						tc.socket.close();
+					} catch (IOException ioE) {
 						// not much I can do
 					}
 				}
-			}
-			catch(Exception e) {
+			} catch (Exception e) {
+				serviceLocator.getLogger().info("Exception closing the server and clients: " + e);
 				System.out.println("Exception closing the server and clients: " + e);
 			}
 		}
-		// something went bad
+		// something went wrong
 		catch (IOException e) {
-            String msg = (" Exception on new ServerSocket: " + e + "\n");
-            System.out.println(msg);
+			serviceLocator.getLogger().info("Exception closing the server and clients: " + e + "\n");
+			String msg = (" Exception on new ServerSocket: " + e + "\n");
+			System.out.println(msg);
 		}
-	}		
+	}
 
 	/*
-	 *  to broadcast a message to all Clients
+	 * to broadcast a message to all Clients
 	 */
 	public synchronized void broadcast(String message) {
 
 		String messageLf = message + "\n";
-			System.out.print(messageLf);
-		
-		// we loop in reverse order in case we would have to remove a Client
+		System.out.print(messageLf);
+
+		// loop in reverse order in case we would have to remove a Client
 		// because it has disconnected
-		for(int i = clientThread.size(); --i >= 0;) {
+		for (int i = clientThread.size(); --i >= 0;) {
 			ClientThread ct = clientThread.get(i);
 			// try to write to the Client if it fails remove it from the list
-			if(!ct.writeMsg(messageLf)) {
+			if (!ct.writeMsg(messageLf)) {
 				clientThread.remove(i);
 				System.out.println("Disconnected Client " + ct.username + " removed from list.");
 			}
 		}
 	}
 
-	// for a client who logoff using the LOGOUT message
+	// remove a client who logoff 
 	public synchronized void remove(int id) {
 		// scan the array list until we found the Id
-		for(int i = 0; i < clientThread.size(); ++i) {
+		for (int i = 0; i < clientThread.size(); ++i) {
 			ClientThread ct = clientThread.get(i);
 			// found it
-			if(ct.id == id) {
+			if (ct.id == id) {
 				clientThread.remove(i);
 				return;
 			}
 		}
 	}
-	
-	
-	
+
 	public static int getUniqueId() {
 		return uniqueId;
 	}
@@ -123,35 +125,14 @@ public class Server {
 	}
 
 	/*
-	 *  To run as a console application just open a console window and: 
-	 * > java Server
-	 * > java Server portNumber
-	 * If the port number is not specified 1500 is used
-	 */ 
+	 * Run the server
+	 */
 	public static void main(String[] args) {
-		// start server on port 1500 unless a PortNumber is specified 
-		int portNumber = 1500;
-		switch(args.length) {
-			case 1:
-				try {
-					portNumber = Integer.parseInt(args[0]);
-				}
-				catch(Exception e) {
-					System.out.println("Invalid port number.");
-					System.out.println("Usage is: > java Server [portNumber]");
-					return;
-				}
-			case 0:
-				break;
-			default:
-				System.out.println("Usage is: > java Server [portNumber]");
-				return;
-				
-		}
+		// start server on port 8888 unless a PortNumber is specified
+		int portNumber = 8888;
 		// create a server object and start it
 		Server server = new Server(portNumber);
-		server.start();
+		server.start();		
 	}
 
 }
-

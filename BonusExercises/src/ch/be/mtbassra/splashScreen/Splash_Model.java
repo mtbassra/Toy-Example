@@ -23,6 +23,7 @@ public class Splash_Model extends Model {
 	final Task<Void> initializer = new Task<Void>() {
 		@Override
 		protected Void call() throws Exception {
+			
 			this.updateProgress(1, 6);
 			
 			//Create the service locator to hold resource
